@@ -33,7 +33,7 @@ exports.createAccount = (async (data) => {
         type: "email_verification" /* VerificationCodeType.EmailVerification */,
         expiresAt: (0, Date_1.oneYearFromNow)()
     });
-    const url = `${env_1.APP_ORIGIN}/email/verify/${verificationCode._id}`;
+    const url = `${env_1.APP_ORIGIN}/auth/email/verify/${verificationCode._id}`;
     const { error } = await (0, sendMail_1.sendMail)({
         to: user.email,
         ...(0, emailTemplates_1.getVerifyEmailTemplate)(url)
