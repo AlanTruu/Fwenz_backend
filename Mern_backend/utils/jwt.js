@@ -7,7 +7,7 @@ exports.verifyToken = exports.signToken = exports.refreshTokenSignOptions = expo
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const env_1 = require("../constants/env");
 const defaults = {
-    audience: ['user'],
+    audience: 'user',
 };
 exports.accessTokenSignOptions = {
     expiresIn: '15m',
@@ -19,13 +19,13 @@ exports.refreshTokenSignOptions = {
 };
 const signToken = (payload, options) => {
     const { secret, ...signOpts } = options || exports.accessTokenSignOptions;
-    return jsonwebtoken_1.default.sign(payload, secret, { ...defaults, ...signOpts });
+    return jsonwebtoken_1.default.sign(payload, secret, { audience: 'user', ...signOpts });
 };
 exports.signToken = signToken;
 const verifyToken = (token, options) => {
     const { secret = env_1.JWT_SECRET, ...verifyOpts } = options || {};
     try {
-        const payload = jsonwebtoken_1.default.verify(token, secret, { ...defaults, ...verifyOpts });
+        const payload = jsonwebtoken_1.default.verify(token, secret, { audience: 'user', ...verifyOpts });
         return { payload };
     }
     catch (err) {

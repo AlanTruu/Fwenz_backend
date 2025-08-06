@@ -5,7 +5,7 @@ const Date_1 = require("./Date");
 const secure = process.env.NODE_ENV !== 'development';
 exports.REFRESH_PATH = '/auth/refresh';
 const defaults = {
-    sameSite: 'strict',
+    sameSite: secure ? 'none' : 'lax',
     httpOnly: true,
     secure: secure
 };
