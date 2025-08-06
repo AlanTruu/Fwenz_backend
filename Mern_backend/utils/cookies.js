@@ -7,7 +7,7 @@ exports.REFRESH_PATH = '/auth/refresh';
 const defaults = {
     sameSite: secure ? 'none' : 'lax',
     httpOnly: true,
-    secure: secure
+    secure: true
 };
 const getAccessTokenCookieOptions = () => ({
     ...defaults,
